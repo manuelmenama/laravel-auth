@@ -15,6 +15,8 @@
     </head>
     <body class="font-sans text-gray-900 antialiased">
 
+        @include('partials.header')
+
         @yield('content')
 
     </body>

@@ -19,12 +19,16 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [PageController::class, 'index'])->name('home');
 
+Route::get('/about', [PageController::class, 'about'])->name('about');
+
 Route::middleware(['auth', 'verified'])
 ->name('admin.')
 ->prefix('admin')
 ->group(function(){
     Route::get('/', [DashboardController::class, 'index'])
     ->name('dashboard');
+    Route::get('/product', [DashboardController::class, 'products'])
+    ->name('products');
 });
 
 Route::middleware('auth')->group(function () {
