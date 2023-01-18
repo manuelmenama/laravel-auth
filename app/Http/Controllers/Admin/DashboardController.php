@@ -11,9 +11,6 @@ class DashboardController extends Controller
         return view('admin.home');
     }
 
-    public function products(){
-        return view('admin.product');
-    }
 
 
 
