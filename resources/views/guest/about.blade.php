@@ -1,5 +1,9 @@
 @extends('layouts.guest')
 
+@section('title')
+| Home
+@endsection
+
 @section('content')
 
 <h1>About us</h1>

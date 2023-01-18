@@ -1,8 +1,8 @@
-<header>
-    <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-        <div class="container">
+<header class="bg-dark">
+    <nav class="navbar navbar-expand-md">
+        <div class="container-fluid">
             <a class="navbar-brand d-flex align-items-center" href="{{ url('/') }}">
-                <div class="logo_laravel">
+                <div class="logo_laravel  text-light">
                     <h2>Logo</h2>
                 </div>
                 {{-- config('app.name', 'Laravel') --}}
@@ -16,16 +16,9 @@
                 <!-- Left Side Of Navbar -->
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="{{route('home') }}">{{ __('Home') }}</a>
+                        <a class="nav-link text-light" href="{{route('home') }}"><i class="fa-solid fa-globe me-1"></i>Vai al sito</a>
                     </li>
-                    @if (Route::has('register'))
-                    <li class="nav-item">
-                        <a href="{{ route('admin.products') }}" class="nav-link">Product</a>
-                    </li>
-                    @endif
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('about') }}">About Us</a>
-                    </li>
+
                 </ul>
 
                 <!-- Right Side Of Navbar -->
@@ -33,31 +26,25 @@
                     <!-- Authentication Links -->
                     @guest
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                        <a class="nav-link text-light" href="{{ route('login') }}">{{ __('Login') }}</a>
                     </li>
                     @if (Route::has('register'))
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                        <a class="nav-link text-light" href="{{ route('register') }}">{{ __('Register') }}</a>
                     </li>
                     @endif
                     @else
-                    <li class="nav-item dropdown">
-                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                            {{ Auth::user()->name }}
+                    <li class="nav-item">
+
+                        <a class="dropdown-item text-light" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                document.getElementById('logout-form').submit();">
+                            {{ __('Logout') }}
                         </a>
 
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{{ route('admin.dashboard') }}">Admin</a>
-                            <a href="{{ route('admin.products') }}" class="dropdown-item">Product</a>
-                            <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                 document.getElementById('logout-form').submit();">
-                                {{ __('Logout') }}
-                            </a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                            @csrf
+                        </form>
 
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                @csrf
-                            </form>
-                        </div>
                     </li>
                     @endguest
                 </ul>
