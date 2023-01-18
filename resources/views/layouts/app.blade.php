@@ -29,13 +29,25 @@
 
         @include('partials.header')
 
-        <aside class="col-1 bg-dark my-aside">
-            @include('admin.partials.aside')
-        </aside>
 
+        <main class="container-fluid">
+            <div class="row">
 
-        <main class="col-11 my-view">
-            @yield('content')
+                @auth
+
+                    <aside class="col-1 bg-dark my-aside">
+                        @include('admin.partials.aside')
+                    </aside>
+                @endauth
+
+                <div class="@auth col-11 @endauth">
+
+                    @yield('content')
+
+                </div>
+
+            </div>
+
         </main>
     </div>
 </body>
