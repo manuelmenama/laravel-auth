@@ -19,6 +19,7 @@
         <p>
             {{$project->summary}}
         </p>
+        <a href="{{ route('admin.project.index') }}" class="btn btn-success">Torna alla lista</a>
     </div>
 
 @endsection

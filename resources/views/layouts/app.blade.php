@@ -30,7 +30,7 @@
         @include('partials.header')
 
 
-        <main class="container-fluid">
+        <main class=" container-fluid">
             <div class="row">
 
                 @auth
@@ -40,7 +40,7 @@
                     </aside>
                 @endauth
 
-                <div class="@auth col-11 @endauth">
+                <div class="my-container @auth col-11 @endauth">
 
                     @yield('content')
 

@@ -28,6 +28,11 @@ nav{
     }
 }
 
+.my-container{
+    height: calc(100vh - 80px);
+    overflow: auto;
+}
+
 .my-show-container{
     img{
         width: 50%;
