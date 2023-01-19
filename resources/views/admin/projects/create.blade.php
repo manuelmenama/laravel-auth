@@ -10,23 +10,51 @@
 
 <div class="container">
     <h1>Add a project</h1>
-    @csrf
-    <form action="{{ route('admin.project.store') }}">
+
+    @if ($errors->any())
+
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>
+                    {{$error}}
+                </li>
+            @endforeach
+        </ul>
+    </div>
+
+    @endif
+    <form action="{{ route('admin.project.store') }}" method="POST">
+
+        @csrf
+
         <div class="mb-3">
             <label for="name" class="form-label">Name</label>
-            <input type="text" class="form-control" id="name" placeholder="Project name..." name="name">
+            <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" placeholder="Project name..." name="name" value="{{old('name')}}">
+            @error('name')
+                <p class="invalid-feedback">{{ $message }}</p>
+            @enderror
         </div>
         <div class="mb-3">
             <label for="client_name" class="form-label">Client name</label>
-            <input type="text" class="form-control" id="client_name" placeholder="Client name..." name="client_name">
+            <input type="text" class="form-control @error('client_name') is-invalid @enderror" id="client_name" placeholder="Client name..." name="client_name" value="{{old('client_name')}}">
+            @error('client_name')
+                <p class="invalid-feedback">{{ $message }}</p>
+            @enderror
         </div>
         <div class="mb-3">
             <label for="cover_image" class="form-label">Cover image</label>
-            <input type="text" class="form-control" id="cover_image" placeholder="Image path..." name="cover_image">
+            <input type="text" class="form-control @error('cover_image') is-invalid @enderror" id="cover_image" placeholder="Image path..." name="cover_image" value="{{old('cover_image')}}">
+            @error('cover_image')
+                <p class="invalid-feedback">{{ $message }}</p>
+            @enderror
         </div>
         <div class="mb-3">
             <label for="summary" class="form-label">Summary</label>
-            <textarea class="form-control" id="summary" rows="3" name="summary"></textarea>
+            <textarea class="form-control @error('summary') is-invalid @enderror" id="summary" rows="3" name="summary"></textarea>
+            @error('summary')
+                <p class="invalid-feedback">{{ $message }}</p>
+            @enderror
         </div>
 
         <button type="submit" class="btn btn-primary">Invia</button>

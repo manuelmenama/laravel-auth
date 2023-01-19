@@ -24,7 +24,10 @@ class ProjectRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name' => 'required|max:255|min:3',
+            'client_name' => 'required|max:255|min:3',
+            'cover_image' => 'required|max:255|min:10',
+            'summary' => 'required|min:10'
         ];
     }
 }

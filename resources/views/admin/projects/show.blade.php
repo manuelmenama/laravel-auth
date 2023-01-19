@@ -8,6 +8,12 @@
     <div class="container my-show-container">
 
         <h1>show project</h1>
+        @if (session('message'))
+
+        <div class="alert alert-success">
+            {{session('message')}}
+        </div>
+        @endif
         <h2>{{ $project->name }}</h2>
         <ul>
             <li>

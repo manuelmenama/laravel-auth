@@ -7,6 +7,7 @@ use App\Http\Requests\ProjectRequest;
 use App\Models\Project;
 use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
+use Psy\CodeCleaner\ReturnTypePass;
 
 class ProjectController extends Controller
 {
@@ -47,7 +48,10 @@ class ProjectController extends Controller
     public function store(ProjectRequest $request)
     {
         $project_data = $request->all();
-        $project_data['slug'] = Project::generateSlug($project_data['name']);
+        //$project_data['slug'] = Project::generateSlug($project_data['name']);
+        $new_project = Project::create($project_data);
+
+        return redirect()->route('admin.project.show', $new_project)->with('message', "Progetto inserito correttamente");
     }
 
     /**
@@ -79,7 +83,7 @@ class ProjectController extends Controller
      * @param  \App\Models\Project  $project
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateProjectRequest $request, Project $project)
+    public function update(ProjectRequest $request, Project $project)
     {
         //
     }
