@@ -31,6 +31,7 @@ Route::middleware(['auth', 'verified'])
     Route::get('/', [DashboardController::class, 'index'])
     ->name('dashboard');
     Route::resource('project', ProjectController::class);
+    Route::get('post/orderby/{column}/{direction}', [ProjectController::class, 'orderby'])->name('projects.orderby');
 });
 
 Route::middleware('auth')->group(function () {

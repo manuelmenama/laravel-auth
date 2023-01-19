@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-
+use App\Http\Requests\ProjectRequest;
 use App\Models\Project;
 use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
@@ -17,8 +17,15 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        $projects = Project::all();
-        return view('admin.projects.projects', compact('projects'));
+        $projects = Project::orderBy('id', 'desc')->paginate(10);
+        $direction = 'desc';
+        return view('admin.projects.projects', compact('projects', 'direction'));
+    }
+
+    public function orderby($column, $direction){
+        $direction = $direction === 'desc'?'asc':'desc';
+        $projects = Project::orderBy($column, $direction)->paginate(10);
+        return view('admin.projects.projects', compact('projects', 'direction'));
     }
 
     /**
@@ -37,9 +44,10 @@ class ProjectController extends Controller
      * @param  \App\Http\Requests\StoreProjectRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreProjectRequest $request)
+    public function store(ProjectRequest $request)
     {
-        //
+        $project_data = $request->all();
+        $project_data['slug'] = Project::generateSlug($project_data['name']);
     }
 
     /**
