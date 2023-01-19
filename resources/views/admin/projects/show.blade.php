@@ -26,6 +26,7 @@
             {{$project->summary}}
         </p>
         <a href="{{ route('admin.project.index') }}" class="btn btn-success">Torna alla lista</a>
+        <a href="{{ route('admin.project.edit', $project) }}" class="btn btn-warning"><i class="fa-solid fa-pencil"></i></a>
     </div>
 
 @endsection

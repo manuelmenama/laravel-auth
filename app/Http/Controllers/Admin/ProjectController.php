@@ -5,8 +5,6 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProjectRequest;
 use App\Models\Project;
-use App\Http\Requests\StoreProjectRequest;
-use App\Http\Requests\UpdateProjectRequest;
 use Psy\CodeCleaner\ReturnTypePass;
 
 class ProjectController extends Controller
@@ -48,8 +46,12 @@ class ProjectController extends Controller
     public function store(ProjectRequest $request)
     {
         $project_data = $request->all();
-        //$project_data['slug'] = Project::generateSlug($project_data['name']);
-        $new_project = Project::create($project_data);
+        $project_data['slug'] = Project::generateSlug($project_data['name']);
+
+        $new_project = new Project();
+        $new_project->fill($project_data);
+        $new_project->save();
+        //$new_project = Project::create($project_data);
 
         return redirect()->route('admin.project.show', $new_project)->with('message', "Progetto inserito correttamente");
     }
@@ -73,7 +75,7 @@ class ProjectController extends Controller
      */
     public function edit(Project $project)
     {
-        //
+        return view('admin.projects.edit', compact('project'));
     }
 
     /**
@@ -85,7 +87,15 @@ class ProjectController extends Controller
      */
     public function update(ProjectRequest $request, Project $project)
     {
-        //
+        $project_data = $request->all();
+        if($project_data['name'] != $project->name){
+            $project_data['slug'] = Project::generateSlug($project_data['name']);
+        }else{
+            $project_data['slug'] = $project->slug;
+        }
+
+        $project->update($project_data);
+        return redirect()->route('admin.project.show', $project)->with('message', "Progetto modificato correttamente");
     }
 
     /**

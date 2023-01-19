@@ -22,6 +22,7 @@
                         <td>{{$project->client_name}}</td>
                         <td>
                             <a href="{{ route('admin.project.show', $project) }}" class="btn btn-primary"><i class="fa-solid fa-eye"></i></a>
+                            <a href="{{ route('admin.project.edit', $project) }}" class="btn btn-warning"><i class="fa-solid fa-pencil"></i></a>
                         </td>
                     </tr>
 
