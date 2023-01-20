@@ -34,9 +34,6 @@
                     </li>
                     @endif
                     @else
-                    <li class="nav-item">
-                        <a href="{{ route('admin.project.create') }}" class="btn btn-outline-light">Add project</a>
-                    </li>
                     <li class="nav-item ms-5">
 
 
