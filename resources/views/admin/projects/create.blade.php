@@ -62,4 +62,15 @@
     </form>
 </div>
 
+
+<script>
+    ClassicEditor
+        .create( document.querySelector( '#summary' ), {
+            toolbar: [ 'heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'numberedList', 'blockQuote' ],
+        } )
+        .catch( error => {
+            console.error( error );
+        } );
+</script>
+
 @endsection

@@ -32,6 +32,7 @@ Route::middleware(['auth', 'verified'])
     ->name('dashboard');
     Route::resource('project', ProjectController::class);
     Route::get('post/orderby/{column}/{direction}', [ProjectController::class, 'orderby'])->name('projects.orderby');
+    //Route::get('post/search', [ProjectController::class, 'search'])->name('post.search');
 });
 
 Route::middleware('auth')->group(function () {

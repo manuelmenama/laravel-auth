@@ -6,8 +6,9 @@
 
 @section('content')
 
-    <div class="card">
+    <div class="container">
         <h1>dashboard</h1>
+        <h3>Sono presenti: {{ $project_counter }} progetti</h3>
     </div>
 
 @endsection
