@@ -20,8 +20,12 @@
                 {{$project->client_name}}
             </li>
         </ul>
-
-        <img src="{{ $project->cover_image }}" alt="{{ $project->name }}">
+        @if ($project->cover_image)
+            <div>
+                <img src="{{ asset('storage/' . $project->cover_image) }}" alt="{{ $project->image_original_name }}">
+            </div>
+            <small><i>{{ $project->image_original_name }}</i></small>
+        @endif
         <p>
             {!!$project->summary!!}
         </p>

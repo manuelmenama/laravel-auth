@@ -62,7 +62,7 @@ class ProjectController extends Controller
             $project_data['cover_image'] = Storage::put('uploads', $project_data['cover_image']);
         }
 
-        dd($project_data);
+        //dd($project_data);
 
         $new_project = new Project();
         $new_project->fill($project_data);
@@ -110,6 +110,16 @@ class ProjectController extends Controller
             $project_data['slug'] = $project->slug;
         }
 
+        if(array_key_exists('cover_image', $project_data)){
+            //se esiste allora devo eliminare la vecchia immagine
+            if($project->cover_image){
+
+                Storage::disk('public')->delete($project->cover_image);
+            }
+            $project_data['image_original_name'] = $request->file('cover_image')->getClientOriginalName();
+            $project_data['cover_image'] = Storage::put('uploads', $project_data['cover_image']);
+        }
+
         $project->update($project_data);
         return redirect()->route('admin.project.show', $project)->with('message', "Progetto modificato correttamente");
     }
@@ -122,7 +132,13 @@ class ProjectController extends Controller
      */
     public function destroy(Project $project)
     {
+        if($project->cover_image){
+
+            Storage::disk('public')->delete($project->cover_image);
+        }
+
         $project->delete();
+
         return redirect()->route('admin.project.index')->with('deleted', "Progetto eliminato correttamente");
     }
 }

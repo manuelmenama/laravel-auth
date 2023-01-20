@@ -24,7 +24,7 @@
     </div>
 
     @endif
-    <form action="{{ route('admin.project.update', $project) }}" method="POST">
+    <form action="{{ route('admin.project.update', $project) }}" method="POST" enctype="multipart/form-data">
 
         @csrf
         @method('PUT')
@@ -45,10 +45,15 @@
         </div>
         <div class="mb-3">
             <label for="cover_image" class="form-label">Cover image</label>
-            <input type="text" class="form-control @error('cover_image') is-invalid @enderror" id="cover_image" placeholder="Image path..." name="cover_image" value="{{old('cover_image', $project->cover_image)}}">
+            <input
+                onchange="showImage(event)"
+                type="file" class="form-control @error('cover_image') is-invalid @enderror" id="cover_image" placeholder="Image path..." name="cover_image" value="{{old('cover_image', $project->cover_image)}}">
             @error('cover_image')
                 <p class="invalid-feedback">{{ $message }}</p>
             @enderror
+            <div>
+                <img class="my-minature" id="output-image" src="{{ asset('storage/' . $project->cover_image) }}" alt="{{$project->image_original_name}}">
+            </div>
         </div>
         <div class="mb-3">
             <label for="summary" class="form-label">Summary</label>
@@ -70,6 +75,11 @@
         .catch( error => {
             console.error( error );
         } );
+
+    function showImage(event){
+        const targetImage = document.getElementById('output-image');
+        targetImage.src = URL.createObjectURL(event.target.files[0]);
+    }
 </script>
 
 @endsection
