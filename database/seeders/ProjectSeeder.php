@@ -22,7 +22,6 @@ class ProjectSeeder extends Seeder
             $new_project->slug = Project::generateSlug($new_project->name);
             $new_project->client_name = $faker->sentence(3);
             $new_project->summary = $faker->paragraph(2, false);
-            $new_project->cover_image = "https://i1.wp.com/potafiori.com/wp-content/uploads/2020/04/placeholder.png";
             $new_project->save();
             //dump($new_project);
         }

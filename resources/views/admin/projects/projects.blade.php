@@ -44,24 +44,24 @@
               </tr>
             </thead>
             <tbody>
-                @foreach ($projects as $project)
-                    <tr>
-                        <td>{{$project->id}}</td>
-                        <td>{{$project->name}}</td>
-                        <td>{{$project->client_name}}</td>
-                        <td class="d-flex">
-                            <a href="{{ route('admin.project.show', $project) }}" class="btn btn-primary me-2"><i class="fa-solid fa-eye"></i></a>
-                            <a href="{{ route('admin.project.edit', $project) }}" class="btn btn-warning me-2"><i class="fa-solid fa-pencil"></i></a>
-                            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modal{{$project->id}}">
-                                <i class="fa-solid fa-trash-can"></i>
-                            </button>
-                            {{-- Button delete manda questo modal --}}
-                            @include('admin.partials.confirm-delete')
-                        </td>
-                    </tr>
-
-
-                @endforeach
+                @forelse ($projects as $project)
+                <tr>
+                    <td>{{$project->id}}</td>
+                    <td>{{$project->name}}</td>
+                    <td>{{$project->client_name}}</td>
+                    <td class="d-flex">
+                        <a href="{{ route('admin.project.show', $project) }}" class="btn btn-primary me-2"><i class="fa-solid fa-eye"></i></a>
+                        <a href="{{ route('admin.project.edit', $project) }}" class="btn btn-warning me-2"><i class="fa-solid fa-pencil"></i></a>
+                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modal{{$project->id}}">
+                            <i class="fa-solid fa-trash-can"></i>
+                        </button>
+                        {{-- Button delete manda questo modal --}}
+                        @include('admin.partials.confirm-delete')
+                    </td>
+                </tr>
+                @empty
+                    <td colspan="4"><h4>Non ci sono risultati</h4></td>
+                @endforelse
             </tbody>
           </table>
           {{$projects->links()}}
