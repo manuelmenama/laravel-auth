@@ -18,7 +18,7 @@ class ProjectController extends Controller
     {
         if(isset($_GET['search'])){
             $searched = $_GET['search'];
-            $project = Project::where('title','like',"%$searched%")->paginate(10);
+            $projects = Project::where('name','like',"%$searched%")->paginate(10);
         }else{
             $projects = Project::orderBy('id', 'desc')->paginate(10);
         }

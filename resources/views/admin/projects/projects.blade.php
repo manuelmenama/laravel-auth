@@ -17,7 +17,7 @@
                     <form action="{{ route('admin.project.index') }}" method="GET">
                         @csrf
                         <div class="mb-3">
-                            <input type="text" class="form-control" id="search" placeholder="Cerca per titolo.." name="search">
+                            <input type="text" class="form-control" id="search" placeholder="Cerca per nome.." name="search">
                         </div>
                         <button class="btn btn-primary" type="submit">Cerca</button>
                     </form>
