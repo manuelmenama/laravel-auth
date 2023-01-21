@@ -8,8 +8,8 @@
 
 @section('content')
 
-<div class="container">
-    <h1>Modifica progetto: {{ $project->name }}</h1>
+<div class="container mt-5">
+    <h4>Modifica progetto: {{ $project->name }}</h4>
 
     @if ($errors->any())
 

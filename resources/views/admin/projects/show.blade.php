@@ -5,9 +5,8 @@
 @endsection
 
 @section('content')
-    <div class="container my-show-container">
+    <div class="container my-show-container mt-5">
 
-        <h1>show project</h1>
         @if (session('message'))
 
         <div class="alert alert-success">

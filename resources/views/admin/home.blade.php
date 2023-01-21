@@ -6,8 +6,7 @@
 
 @section('content')
 
-    <div class="container">
-        <h1>dashboard</h1>
+    <div class="container mt-5">
         <h3>Sono presenti: {{ $project_counter }} progetti</h3>
     </div>
 

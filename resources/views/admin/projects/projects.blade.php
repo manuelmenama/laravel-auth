@@ -2,8 +2,7 @@
 
 @section('content')
 
-    <div class="container">
-        <h1>Projects</h1>
+    <div class="container mt-5">
 
         <div class="accordion" id="accordionExample">
             <div class="accordion-item">

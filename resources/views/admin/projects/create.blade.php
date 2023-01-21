@@ -8,8 +8,7 @@
 
 @section('content')
 
-<div class="container">
-    <h1>Add a project</h1>
+<div class="container mt-5">
 
     @if ($errors->any())
 
